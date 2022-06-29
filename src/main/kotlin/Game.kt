@@ -16,10 +16,6 @@ open class Game(val title: String) {
         println("==========================")
     }
 
-    fun showResultMessage(vararg resultSuit: Int) {
-
-    }
-
     fun playAgain(isTrue: Boolean) {
 
     }
