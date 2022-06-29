@@ -1,5 +1,5 @@
 interface SuitGame {
-    fun showMessageTurnPlayer(isPlayer1Turn: Boolean)
-    fun readPlayerInput(isPlayer1Turn: Boolean)
+    fun showMessageTurnPlayer()
+    fun readPlayerInput()
     fun calculate()
 }

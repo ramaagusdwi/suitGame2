@@ -1,14 +1,21 @@
 class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
     private var player1 = "" //access modifier
     private var player2 = ""
+    private var isPlayer1Turn = false
 
-    override fun showMessageTurnPlayer(isPlayer1Turn: Boolean) {
+    fun executeGame(isPlayer1Turn: Boolean){
+        this.isPlayer1Turn = isPlayer1Turn
+        showMessageTurnPlayer()
+        readPlayerInput()
+    }
+
+    override fun showMessageTurnPlayer() {
         val mapPlayer = mapOf(true to 1, false to 2)
         val numberPlayer = mapPlayer[isPlayer1Turn]
         print("$numberPlayer. Masukan pemain $numberPlayer (gunting,kertas,batu): ")
     }
 
-    override fun readPlayerInput(isPlayer1Turn: Boolean) {
+    override fun readPlayerInput() {
         val enteredString = readLine()!! //take the input from user
 
         if (enteredString.isEmpty()) return //penerapan kondisi
@@ -23,8 +30,8 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
                     else player2 = enteredString
                 }
                 else -> {
-                    showMessageTurnPlayer(isPlayer1Turn)
-                    readPlayerInput(isPlayer1Turn)
+                    showMessageTurnPlayer()
+                    readPlayerInput()
                 }
             }
 
