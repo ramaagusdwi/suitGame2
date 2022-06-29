@@ -21,9 +21,7 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
         if (enteredString.isEmpty()) return //penerapan kondisi
 
         if (enteredString.isNotEmpty()) {
-//            println(enteredString)
             val inputUser = enteredString.trim().uppercase()
-            //handle user input
             when (inputUser) {
                 "GUNTING", "KERTAS", "BATU" -> {
                     if (isPlayer1Turn) player1 = inputUser
