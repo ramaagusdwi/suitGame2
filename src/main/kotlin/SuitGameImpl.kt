@@ -4,7 +4,7 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
     private var isPlayer1Turn = false
 
 
-    fun executeGame(isPlayer1Turn: Boolean){
+    fun executeGame(isPlayer1Turn: Boolean) {
         this.isPlayer1Turn = isPlayer1Turn
         showMessageTurnPlayer()
         readPlayerInput()
@@ -23,12 +23,12 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
 
         if (enteredString.isNotEmpty()) {
 //            println(enteredString)
-
+            val inputUser = enteredString.trim().uppercase()
             //handle user input
-            when (enteredString.trim().lowercase()) {
-                "gunting", "kertas", "batu" -> {
-                    if (isPlayer1Turn) player1 = enteredString
-                    else player2 = enteredString
+            when (inputUser) {
+                "GUNTING", "KERTAS", "BATU" -> {
+                    if (isPlayer1Turn) player1 = inputUser
+                    else player2 = inputUser
                 }
                 else -> {
                     showMessageTurnPlayer()
