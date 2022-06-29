@@ -47,6 +47,7 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
             else -> "Pemain 2 Menang!"
         }
 
+        println()
         println("Hasil: ")
         print(result)
     }
