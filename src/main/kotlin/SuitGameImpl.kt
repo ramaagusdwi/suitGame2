@@ -15,8 +15,20 @@ class SuitGameImpl : Game(), SuitGame {
 
         if (enteredString.isNotEmpty()) {
             println(enteredString)
-            if (isPlayer1Turn) player1 = enteredString
-            else player2 = enteredString
+
+            //handle user input
+            when (enteredString.lowercase()) {
+                "gunting", "kertas", "batu" -> {
+                    if (isPlayer1Turn) player1 = enteredString
+                    else player2 = enteredString
+                }
+                else -> {
+                    showMessageTurnPlayer(isPlayer1Turn)
+                    readPlayerInput(isPlayer1Turn)
+                }
+            }
+
+
         }
     }
 
