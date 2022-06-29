@@ -7,7 +7,6 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
         this.isPlayer1Turn = isPlayer1Turn
         showMessageTurnPlayer()
         readPlayerInput()
-        showResult()
     }
 
     override fun showMessageTurnPlayer() {

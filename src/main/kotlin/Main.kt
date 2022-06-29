@@ -3,5 +3,5 @@ fun main() {
     suitGameImpl.showWelcomeMessage()
     suitGameImpl.startGame(true)
     suitGameImpl.startGame(false)
-
+    suitGameImpl.showResult()
 }
