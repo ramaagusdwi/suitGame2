@@ -5,4 +5,9 @@ fun main() {
     suitGameImpl.startGame(false)
     suitGameImpl.showResult()
     suitGameImpl.showScore()
+    val playAgain = suitGameImpl.playAgain()
+
+    while (playAgain) {
+        main()
+    }
 }

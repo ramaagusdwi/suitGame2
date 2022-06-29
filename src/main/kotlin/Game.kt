@@ -16,8 +16,12 @@ open class Game(val title: String) {
         println("==========================")
     }
 
-    fun playAgain(isTrue: Boolean) {
+    fun playAgain(): Boolean {
+        println()
+        print("Play Again? (y/n): ")
+        val enteredString = readLine()!!.trim().lowercase()
 
+        return enteredString.equals("y")
     }
 
     fun showScore(win: Int, lose: Int, draw: Int) {
