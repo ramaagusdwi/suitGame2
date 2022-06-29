@@ -2,6 +2,10 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
     private var player1 = "" //access modifier
     private var player2 = ""
     private var isPlayer1Turn = false
+    private var win = 0
+    private var lose = 0
+    private var draw = 0
+
 
     fun startGame(isPlayer1Turn: Boolean) {
         this.isPlayer1Turn = isPlayer1Turn
@@ -38,8 +42,7 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
     }
 
     override fun showResult() {
-        var result = ""
-        result = when {
+        val result = when {
             super.isDraw(player1, player2) -> "DRAW!"
             super.isWin(player1, player2) -> "Pemain 1 Menang!"
             else -> "Pemain 2 Menang!"
@@ -48,6 +51,18 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
         println()
         println("Hasil: ")
         print(result)
+    }
+
+    override fun showScore() {
+
+
+        when {
+            super.isDraw(player1, player2) -> draw++
+            super.isWin(player1, player2) -> win++
+            else -> lose++
+        }
+
+        super.showScore(win, lose, draw)
     }
 
 

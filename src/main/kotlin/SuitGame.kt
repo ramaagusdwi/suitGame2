@@ -3,4 +3,5 @@ interface SuitGame {
     fun readPlayerInput()
     fun showResult()
 
+    fun showScore()
 }

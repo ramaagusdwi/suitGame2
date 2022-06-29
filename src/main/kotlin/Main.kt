@@ -4,4 +4,5 @@ fun main() {
     suitGameImpl.startGame(true)
     suitGameImpl.startGame(false)
     suitGameImpl.showResult()
+    suitGameImpl.showScore()
 }
