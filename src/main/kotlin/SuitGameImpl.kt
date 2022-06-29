@@ -3,6 +3,7 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
     private var player2 = ""
     private var isPlayer1Turn = false
 
+
     fun executeGame(isPlayer1Turn: Boolean){
         this.isPlayer1Turn = isPlayer1Turn
         showMessageTurnPlayer()
@@ -12,7 +13,7 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
     override fun showMessageTurnPlayer() {
         val mapPlayer = mapOf(true to 1, false to 2)
         val numberPlayer = mapPlayer[isPlayer1Turn]
-        print("$numberPlayer. Masukan pemain $numberPlayer (gunting,kertas,batu): ")
+        print("$numberPlayer. Masukan pemain $numberPlayer (gunting/kertas/batu): ")
     }
 
     override fun readPlayerInput() {
@@ -40,7 +41,7 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
     }
 
     override fun calculate() {
-        TODO("Not yet implemented")
+
     }
 
 
