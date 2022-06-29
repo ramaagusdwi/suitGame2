@@ -1,7 +1,8 @@
-open class Game {
+open class Game(val title: String) {
+
     fun showWelcomeMessage() {
         println("==========================")
-        println("GAME SUIT TERMINAL VERSION")
+        println(this.title)
         println("==========================")
     }
 
