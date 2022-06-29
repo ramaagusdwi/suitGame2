@@ -17,7 +17,7 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
 //            println(enteredString)
 
             //handle user input
-            when (enteredString.lowercase()) {
+            when (enteredString.trim().lowercase()) {
                 "gunting", "kertas", "batu" -> {
                     if (isPlayer1Turn) player1 = enteredString
                     else player2 = enteredString
