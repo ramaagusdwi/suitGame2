@@ -3,11 +3,11 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
     private var player2 = ""
     private var isPlayer1Turn = false
 
-
-    fun executeGame(isPlayer1Turn: Boolean) {
+    fun startGame(isPlayer1Turn: Boolean) {
         this.isPlayer1Turn = isPlayer1Turn
         showMessageTurnPlayer()
         readPlayerInput()
+        showResult()
     }
 
     override fun showMessageTurnPlayer() {
@@ -40,8 +40,16 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
         }
     }
 
-    override fun calculate() {
+    override fun showResult() {
+        var result = ""
+        result = when {
+            super.isDraw(player1, player2) -> "DRAW!"
+            super.isWin(player1, player2) -> "Pemain 1 Menang!"
+            else -> "Pemain 2 Menang!"
+        }
 
+        println("Hasil: ")
+        print(result)
     }
 
 
