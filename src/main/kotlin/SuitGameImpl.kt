@@ -1,10 +1,7 @@
 class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
-    private var player1 = "" //access modifier
-    private var player2 = ""
+    internal var player1 = "" //access modifier
+    internal var player2 = ""
     private var isPlayer1Turn = false
-    private var win = 0
-    private var lose = 0
-    private var draw = 0
 
 
     fun startGame(isPlayer1Turn: Boolean) {
@@ -53,16 +50,10 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
         print(result)
     }
 
-    override fun showScore() {
+    override fun setScore(saveScore: (suitGame: SuitGameImpl) -> Unit) {
+        saveScore(this)
 
-
-        when {
-            super.isDraw(player1, player2) -> draw++
-            super.isWin(player1, player2) -> win++
-            else -> lose++
-        }
-
-        super.showScore(win, lose, draw)
+//        super.showScore(winVal, loseVal, drawVal)
     }
 
 
