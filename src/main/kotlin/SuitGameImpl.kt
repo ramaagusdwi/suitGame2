@@ -52,8 +52,6 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
 
     override fun setScore(saveScore: (suitGame: SuitGameImpl) -> Unit) {
         saveScore(this)
-
-//        super.showScore(winVal, loseVal, drawVal)
     }
 
 
