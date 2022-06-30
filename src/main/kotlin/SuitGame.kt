@@ -3,5 +3,6 @@ interface SuitGame {
     fun readPlayerInput()
     fun showResult()
 
-    fun showScore()
+//    fun setScore(win: Int, draw: Int, lose : Int)
+    fun setScore(saveScore: (suitGameImpl: SuitGameImpl) -> Unit)
 }
