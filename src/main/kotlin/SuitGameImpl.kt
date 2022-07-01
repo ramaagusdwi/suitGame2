@@ -29,7 +29,7 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
                     else player2 = inputUser
                 }
                 else -> {
-                    showMessageTurnPlayer()
+                    showMessageTurnPlayer() //jika inputan bukan dari GUNTING,KERTAS, BATU maka tampilkan pesan inputan
                     readPlayerInput()
                 }
             }
