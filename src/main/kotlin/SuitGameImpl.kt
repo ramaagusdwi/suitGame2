@@ -13,7 +13,7 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
     }
 
     override fun showMessageVersus() {
-        print("Apakah anda ingin lawan CPU? (y/n): ")
+        println("Apakah anda ingin lawan CPU? (y/n): ")
 
         val enteredString = readLine()!! //take the input from user
 
@@ -42,12 +42,12 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
         if (enteredString.isNotEmpty()) {
             val inputFromUser = enteredString.trim().uppercase()
             when (inputFromUser) {
-
                 "GUNTING", "KERTAS", "BATU" -> {
                     if (isPlayer1Turn) player1 = inputFromUser
                     else player2 = inputFromUser
                 }
                 else -> {
+                    println("Mohon inputkan (gunting/kertas/batu) == HURUF BESAR SEMUA ATAU KECIL SEMUA")
                     showMessageInputan() //jika inputan bukan dari GUNTING,KERTAS, BATU maka tampilkan pesan inputan
                     readPlayerInput()
                 }
