@@ -27,9 +27,7 @@ open class Game(val title: String) {
     fun showScore(win: Int, lose: Int, draw: Int) {
         println()
         println()
-        println("Win: $win")
-        println("Lose: $lose")
-        println("Draw: $draw")
+        println("YOUR SCORE = WIN: $win, LOSE: $lose, DRAW: $draw")
     }
 
     fun isDraw(from: String, to: String): Boolean = from == to
