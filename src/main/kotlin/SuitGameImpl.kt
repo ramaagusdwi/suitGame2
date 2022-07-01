@@ -6,11 +6,11 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
 
     fun startGame(isPlayer1Turn: Boolean) {
         this.isPlayer1Turn = isPlayer1Turn
-        showMessageTurnPlayer()
+        showMessageInputan()
         readPlayerInput()
     }
 
-    override fun showMessageTurnPlayer() {
+    override fun showMessageInputan() {
         val mapPlayer = mapOf(true to 1, false to 2)
         val numberPlayer = mapPlayer[isPlayer1Turn]
         print("$numberPlayer. Masukan pemain $numberPlayer (gunting/kertas/batu): ")
@@ -29,7 +29,7 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
                     else player2 = inputUser
                 }
                 else -> {
-                    showMessageTurnPlayer() //jika inputan bukan dari GUNTING,KERTAS, BATU maka tampilkan pesan inputan
+                    showMessageInputan() //jika inputan bukan dari GUNTING,KERTAS, BATU maka tampilkan pesan inputan
                     readPlayerInput()
                 }
             }
