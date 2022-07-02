@@ -3,11 +3,12 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
     internal var player2 = ""
     private var isPlayer1Turn = false
     private var isCpu = false
-    val optionSuitGame = arrayOf("GUNTING", " KERTAS ", " BATU")
+    val dataSuitArray = arrayOf("GUNTING", "KERTAS", "BATU")
+    val dataDecisionArray = arrayOf("Y", "N")
 
     fun startGame(isPlayer1Turn: Boolean) {
         this.isPlayer1Turn = isPlayer1Turn
-        showMessageInputan()
+        printMessageInputan()
         readPlayerInput()
 
     }
@@ -17,14 +18,24 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
 
         val enteredString = readLine()!! //take the input from user
 
-        if (enteredString.isEmpty()) return //penerapan kondisi
+        handleMessageAlert(dataDecisionArray)
 
         if (enteredString.isNotEmpty()) {
+            val inputFromUser = enteredString.trim().uppercase()
+            when (inputFromUser) {
+                "Y", "N" -> {
+                    if (isPlayer1Turn) player1 = inputFromUser
+                    else player2 = inputFromUser
+                }
+                else -> {
+                    handleMessageAlert(dataDecisionArray)
+                }
+            }
 
         }
     }
 
-    override fun showMessageInputan() {
+    override fun printMessageInputan() {
         val mapPlayer = mapOf(true to 1, false to 2)
         val numberPlayer = mapPlayer[isPlayer1Turn]
         print("$numberPlayer. Masukan pemain $numberPlayer (gunting/kertas/batu): ")
@@ -33,11 +44,7 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
     override fun readPlayerInput() {
         val enteredString = readLine()!! //take the input from user
 
-        if (enteredString.isEmpty()) {
-            println("Mohon inputkan sesuatu!")
-            showMessageInputan()
-            readPlayerInput()
-        }
+        validateEmptyInput(enteredString)
 
         if (enteredString.isNotEmpty()) {
             val inputFromUser = enteredString.trim().uppercase()
@@ -47,11 +54,35 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
                     else player2 = inputFromUser
                 }
                 else -> {
-                    println("Mohon inputkan (gunting/kertas/batu) == HURUF BESAR SEMUA ATAU KECIL SEMUA")
-                    showMessageInputan() //jika inputan bukan dari GUNTING,KERTAS, BATU maka tampilkan pesan inputan
-                    readPlayerInput()
+                    handleMessageAlert(dataSuitArray)
                 }
             }
+        }
+    }
+
+    private fun handleMessageAlert(arrayString: Array<String>) {
+        var spesificWord = ""
+
+        var i = 0
+        while (i < arrayString.size) {
+            if (i > 0) { //jika index lebih dari 0 , maka gabungkan string "/"
+                spesificWord += "/"
+            }
+            spesificWord += arrayString[i]
+            i++
+        }
+
+        println("Mohon inputkan ($spesificWord)")
+        println("NB : BISA HURUF BESAR SEMUA ATAU KECIL SEMUA")
+        printMessageInputan() //jika inputan bukan dari GUNTING,KERTAS, BATU maka paksa user untuk menginputkan / print masukan pemain 1
+        readPlayerInput()
+    }
+
+    private fun validateEmptyInput(enteredString: String) {
+        if (enteredString.isEmpty()) {
+            handleMessageAlert(dataSuitArray)
+            printMessageInputan()
+            readPlayerInput()
         }
     }
 
