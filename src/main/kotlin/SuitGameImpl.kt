@@ -18,7 +18,8 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
         val enteredString = readLine()!!.uppercase() //take the input from user
         Utils.validateEmptyInput(enteredString) { isEmpty ->
             if (isEmpty) {
-                Utils.handleMessageAlert(dataSuitArray)
+                Utils.handleMessageAlert(dataDecisionArray)
+                showMessageVersusCpu()
             } else {
                 when (enteredString) {
                     "Y" -> isCpu = true
@@ -41,20 +42,27 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
 
     override fun readPlayerInput() {
         val enteredString = readLine()!! //take the input from user
-        if (enteredString.isNotEmpty()) {
-            val inputFromUser = enteredString.trim().uppercase()
-            when (inputFromUser) {
-                "GUNTING", "KERTAS", "BATU" -> {
-                    if (isPlayer1Turn) player1 = inputFromUser
-                    else player2 = inputFromUser
-                }
-                else -> {
-                    Utils.handleMessageAlert(dataSuitArray)
-                    printMessageInputanPlayer()
-                    readPlayerInput()
+        val inputFromUser = enteredString.trim().uppercase()
+        Utils.validateEmptyInput(inputFromUser) { isEmpty ->
+            if (isEmpty) {
+                Utils.handleMessageAlert(dataSuitArray)
+                printMessageInputanPlayer()
+                readPlayerInput()
+            } else {
+                when (inputFromUser) {
+                    "GUNTING", "KERTAS", "BATU" -> {
+                        if (isPlayer1Turn) player1 = inputFromUser
+                        else player2 = inputFromUser
+                    }
+                    else -> {
+                        Utils.handleMessageAlert(dataSuitArray)
+                        printMessageInputanPlayer()
+                        readPlayerInput()
+                    }
                 }
             }
         }
+
     }
 
 
