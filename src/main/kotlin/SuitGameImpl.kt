@@ -41,9 +41,6 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
 
     override fun readPlayerInput() {
         val enteredString = readLine()!! //take the input from user
-
-//        validateEmptyInput(enteredString)
-
         if (enteredString.isNotEmpty()) {
             val inputFromUser = enteredString.trim().uppercase()
             when (inputFromUser) {
@@ -52,7 +49,9 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
                     else player2 = inputFromUser
                 }
                 else -> {
-//                    handleMessageAlert(dataSuitArray)
+                    Utils.handleMessageAlert(dataSuitArray)
+                    printMessageInputanPlayer()
+                    readPlayerInput()
                 }
             }
         }
