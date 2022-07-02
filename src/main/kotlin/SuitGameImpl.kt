@@ -45,7 +45,10 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
             } else {
                 when (enteredString) {
                     "Y" -> isCpu = true
-                    "N" -> isCpu = false
+                    "N" -> {
+                        isCpu = false
+                        scorePlayer2 = Score() //reset , because change player from CPU to pemain2
+                    }
                     else -> {
                         println("Inputan tidak sesuai dengan opsi pilihan!")
                         Utils.handleMessageAlert(dataDecisionArray)
