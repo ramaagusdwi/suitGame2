@@ -66,7 +66,7 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
 
     override fun printMessageInputanPlayer(numberPlayer: Int, namePlayer: String, answer: String) {
 
-        print("$numberPlayer. Masukan pemain $numberPlayer (gunting/kertas/batu): $answer") //kalau bukan CPU, maka variable to berisi defalut value  yaitu sting kosong
+        print("$numberPlayer. Masukan pemain $numberPlayer (gunting/kertas/batu): $answer")
     }
 
     override fun readPlayerInput() {
