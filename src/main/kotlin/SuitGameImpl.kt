@@ -18,6 +18,7 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
         val enteredString = readLine()!!.uppercase() //take the input from user
         Utils.validateEmptyInput(enteredString) { isEmpty ->
             if (isEmpty) {
+                println("Inputan tidak boleh kosong!")
                 Utils.handleMessageAlert(dataDecisionArray)
                 showMessageVersusCpu()
             } else {
@@ -25,6 +26,7 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
                     "Y" -> isCpu = true
                     "N" -> isCpu = false
                     else -> {
+                        println("Inputan tidak sesuai dengan opsi pilihan!")
                         Utils.handleMessageAlert(dataDecisionArray)
                         showMessageVersusCpu() //paksa print statement "ingin lawan cpu" ini kembali, ketika inputan tidak memenuhi kondisi
                     }
@@ -45,6 +47,7 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
         val inputFromUser = enteredString.trim().uppercase()
         Utils.validateEmptyInput(inputFromUser) { isEmpty ->
             if (isEmpty) {
+                println("Inputan tidak boleh kosong!")
                 Utils.handleMessageAlert(dataSuitArray)
                 printMessageInputanPlayer()
                 readPlayerInput()
@@ -55,6 +58,7 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
                         else player2 = inputFromUser
                     }
                     else -> {
+                        println("Inputan tidak sesuai dengan opsi pilihan!")
                         Utils.handleMessageAlert(dataSuitArray)
                         printMessageInputanPlayer()
                         readPlayerInput()
