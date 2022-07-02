@@ -106,7 +106,6 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
         }
 
         println()
-        println()
         print("Hasil: ")
         println(result)
     }
