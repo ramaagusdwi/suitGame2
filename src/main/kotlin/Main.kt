@@ -8,6 +8,7 @@ private var draw = 0
 fun main() {
     val suitGameImpl = SuitGameImpl("GAME SUIT TERMINAL VERSION")
     suitGameImpl.showWelcomeMessage()
+    suitGameImpl.showMessageVersusCpu()
     suitGameImpl.startGame(true)
     suitGameImpl.startGame(false)
     suitGameImpl.showResult()

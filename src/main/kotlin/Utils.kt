@@ -13,8 +13,8 @@ class Utils {
                 i++
             }
 
-            println("Mohon inputkan ($spesificWord)")
-            println("NB : BISA HURUF BESAR SEMUA ATAU KECIL SEMUA")
+            print("Mohon inputkan ($spesificWord)")
+            println("- (BISA HURUF BESAR ATAU KECIL)")
         }
 
         fun validateEmptyInput(
