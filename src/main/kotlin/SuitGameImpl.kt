@@ -11,17 +11,12 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
     var playerName: String = ""
 
     fun startGame() {
-
         if (isCpu) {
             val random = Random.nextInt(0, 3)
             suitChoose2 =
                 dataSuitArray[random] //memilih random dari pilih (gunting/keras/batu) disimpan ke var suitChosse2
-        }
-
-        if (isCpu) {
             playerArray[1] = "CPU"
         }
-
         for (index in 0 until playerArray.size) {
             playerNumber = index + 1
             playerName = playerArray[index]
@@ -33,7 +28,6 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
 
             //seting giliran pemain 1 jika index sama dengan 0
             this.isPlayer1Turn = index == 0
-
             if (playerArray[index] != "CPU") readPlayerInput()
         }
 
@@ -41,7 +35,6 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
 
     override fun showMessageVersusCpu() {
         print("Apakah anda ingin lawan CPU? (y/n): ")
-
         val enteredString = readLine()!!.uppercase() //take the input from user
         Utils.validateEmptyInput(enteredString) { isEmpty ->
             if (isEmpty) {
@@ -62,11 +55,9 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
                 }
             }
         }
-
     }
 
     override fun printMessageInputanPlayer(numberPlayer: Int, namePlayer: String, answer: String) {
-
         print("$numberPlayer. Masukan pemain $numberPlayer (gunting/kertas/batu): $answer")
     }
 
@@ -94,9 +85,7 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
                 }
             }
         }
-
     }
-
 
     override fun showResult() {
         val result = when {
@@ -104,7 +93,6 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
             super.isWin(suitChoose1, suitChoose2) -> "Pemain 1 Menang!"
             else -> if (isCpu) "Komputer menang " else "Pemain 2 Menang!"
         }
-
         println()
         print("Hasil: ")
         println(result)
@@ -113,6 +101,4 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
     override fun setScore(saveScore: (suitGame: SuitGameImpl) -> Unit) {
         saveScore(this)
     }
-
-
 }
