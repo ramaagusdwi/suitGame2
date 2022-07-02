@@ -9,8 +9,7 @@ fun main() {
     val suitGameImpl = SuitGameImpl("GAME SUIT TERMINAL VERSION")
     suitGameImpl.showWelcomeMessage()
     suitGameImpl.showMessageVersusCpu()
-    suitGameImpl.startGame(true)
-    suitGameImpl.startGame(false)
+    suitGameImpl.startGame()
     suitGameImpl.showResult()
 
     suitGameImpl.setScore({saveScore(suitGameImpl)})
@@ -24,8 +23,8 @@ fun main() {
 
 fun saveScore(suitGameImpl: SuitGameImpl) {
     when {
-        suitGameImpl.isDraw(suitGameImpl.player1, suitGameImpl.player2) -> draw++
-        suitGameImpl.isWin(suitGameImpl.player1, suitGameImpl.player2) -> win++
+        suitGameImpl.isDraw(suitGameImpl.suitChoose1, suitGameImpl.suitChoose2) -> draw++
+        suitGameImpl.isWin(suitGameImpl.suitChoose1, suitGameImpl.suitChoose2) -> win++
         else -> lose++
     }
 

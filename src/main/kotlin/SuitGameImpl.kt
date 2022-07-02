@@ -1,15 +1,43 @@
+import kotlin.random.Random
+
 class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
-    internal var player1 = "" //access modifier
-    internal var player2 = ""
+    internal var suitChoose1 = "" //access modifier
+    internal var suitChoose2 = ""
     private var isPlayer1Turn = false
     private var isCpu = false
+    val playerArray = arrayOf("pemain1", "pemain2")
     val dataSuitArray = arrayOf("GUNTING", "KERTAS", "BATU")
     val dataDecisionArray = arrayOf("Y", "N")
+    var playerNumber: Int = 0
+    var playerName: String = ""
 
-    fun startGame(isPlayer1Turn: Boolean) {
-        this.isPlayer1Turn = isPlayer1Turn
-        printMessageInputanPlayer()
-        readPlayerInput()
+    fun startGame() {
+
+        if (isCpu) {
+            val random = Random.nextInt(0, 3)
+            suitChoose2 =
+                dataSuitArray[random] //memilih random dari pilih (gunting/keras/batu) disimpan ke var suitChosse2
+        }
+
+        if (isCpu) {
+            playerArray[1] = "CPU"
+        }
+
+        for (index in 0 until playerArray.size) {
+            playerNumber = index + 1
+            playerName = playerArray[index]
+            if (playerName == "CPU") {
+                printMessageInputanPlayer(playerNumber, playerArray[index], suitChoose2)
+            } else {
+                printMessageInputanPlayer(playerNumber, playerArray[index], "")
+            }
+
+            //seting giliran pemain 1 jika index sama dengan 0
+            this.isPlayer1Turn = index == 0
+
+            if (playerArray[index] != "CPU") readPlayerInput()
+        }
+
     }
 
     override fun showMessageVersusCpu() {
@@ -36,10 +64,9 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
 
     }
 
-    override fun printMessageInputanPlayer() {
-        val mapPlayer = mapOf(true to 1, false to 2)
-        val numberPlayer = mapPlayer[isPlayer1Turn]
-        print("$numberPlayer. Masukan pemain $numberPlayer (gunting/kertas/batu): ")
+    override fun printMessageInputanPlayer(numberPlayer: Int, namePlayer: String, answer: String) {
+
+        print("$numberPlayer. Masukan pemain $numberPlayer (gunting/kertas/batu): $answer") //kalau bukan CPU, maka variable to berisi defalut value  yaitu sting kosong
     }
 
     override fun readPlayerInput() {
@@ -49,18 +76,18 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
             if (isEmpty) {
                 println("Inputan tidak boleh kosong!")
                 Utils.handleMessageAlert(dataSuitArray)
-                printMessageInputanPlayer()
+                printMessageInputanPlayer(playerNumber, playerName, "")
                 readPlayerInput()
             } else {
                 when (inputFromUser) {
                     "GUNTING", "KERTAS", "BATU" -> {
-                        if (isPlayer1Turn) player1 = inputFromUser
-                        else player2 = inputFromUser
+                        if (isPlayer1Turn) suitChoose1 = inputFromUser
+                        else suitChoose2 = inputFromUser
                     }
                     else -> {
                         println("Inputan tidak sesuai dengan opsi pilihan!")
                         Utils.handleMessageAlert(dataSuitArray)
-                        printMessageInputanPlayer()
+                        printMessageInputanPlayer(playerNumber, playerName, "")
                         readPlayerInput()
                     }
                 }
@@ -72,9 +99,9 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
 
     override fun showResult() {
         val result = when {
-            super.isDraw(player1, player2) -> "DRAW!"
-            super.isWin(player1, player2) -> "Pemain 1 Menang!"
-            else -> "Pemain 2 Menang!"
+            super.isDraw(suitChoose1, suitChoose2) -> "DRAW!"
+            super.isWin(suitChoose1, suitChoose2) -> "Pemain 1 Menang!"
+            else -> if (isCpu) "CPU menang " else "Pemain 2 Menang!"
         }
 
         println()
