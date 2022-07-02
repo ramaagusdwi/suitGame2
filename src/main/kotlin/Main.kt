@@ -1,9 +1,8 @@
-private var win = 0
-private var lose = 0
-private var draw = 0
 //variable declare top member
 //agar tetap mempertahankan state valuenya, jika permainan berikutnya
 //kalau dideklarasikan di kelas SuitGameImpl, value dari win, lose, draw akan ke reset ke 0
+var scorePlayer1: Score = Score()
+var scorePlayer2: Score = Score()
 
 fun main() {
     val suitGameImpl = SuitGameImpl("GAME SUIT TERMINAL VERSION")
@@ -12,8 +11,9 @@ fun main() {
     suitGameImpl.startGame()
     suitGameImpl.showResult()
 
-    suitGameImpl.setScore({saveScore(suitGameImpl)})
-    suitGameImpl.showScore(win,lose,draw)
+    suitGameImpl.setScore({ saveScore(suitGameImpl) })
+    val arr = arrayOf(scorePlayer1,scorePlayer2)
+    suitGameImpl.showScore(arr)
     val playAgain = suitGameImpl.playAgain()
 
     while (playAgain) {
@@ -23,10 +23,15 @@ fun main() {
 
 fun saveScore(suitGameImpl: SuitGameImpl) {
     when {
-        suitGameImpl.isDraw(suitGameImpl.suitChoose1, suitGameImpl.suitChoose2) -> draw++
-        suitGameImpl.isWin(suitGameImpl.suitChoose1, suitGameImpl.suitChoose2) -> win++
-        else -> lose++
+        suitGameImpl.isDraw(suitGameImpl.suitChoose1, suitGameImpl.suitChoose2) -> scorePlayer1.draw++
+        suitGameImpl.isWin(suitGameImpl.suitChoose1, suitGameImpl.suitChoose2) -> scorePlayer1.win++
+        else -> scorePlayer1.lose++
     }
 
+    when {
+        suitGameImpl.isDraw(suitGameImpl.suitChoose1, suitGameImpl.suitChoose2) -> scorePlayer2.draw++
+        suitGameImpl.isPlayer2Win(suitGameImpl.suitChoose1, suitGameImpl.suitChoose2) -> scorePlayer2.win++
+        else -> scorePlayer2.lose++
+    }
 }
 

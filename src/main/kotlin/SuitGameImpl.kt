@@ -4,7 +4,6 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
     internal var suitChoose1 = "" //access modifier
     internal var suitChoose2 = ""
     private var isPlayer1Turn = false
-    private var isCpu = false
     val playerArray = arrayOf("pemain1", "pemain2")
     val dataSuitArray = arrayOf("GUNTING", "KERTAS", "BATU")
     val dataDecisionArray = arrayOf("Y", "N")
@@ -57,6 +56,7 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
                     else -> {
                         println("Inputan tidak sesuai dengan opsi pilihan!")
                         Utils.handleMessageAlert(dataDecisionArray)
+                        println()
                         showMessageVersusCpu() //paksa print statement "ingin lawan cpu" ini kembali, ketika inputan tidak memenuhi kondisi
                     }
                 }
@@ -102,7 +102,7 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
         val result = when {
             super.isDraw(suitChoose1, suitChoose2) -> "DRAW!"
             super.isWin(suitChoose1, suitChoose2) -> "Pemain 1 Menang!"
-            else -> if (isCpu) "CPU menang " else "Pemain 2 Menang!"
+            else -> if (isCpu) "Komputer menang " else "Pemain 2 Menang!"
         }
 
         println()
