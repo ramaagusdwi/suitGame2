@@ -41,11 +41,12 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
     }
 
     override fun showMessageVersusCpu() {
-        println("Apakah anda ingin lawan CPU? (y/n): ")
+        print("Apakah anda ingin lawan CPU? (y/n): ")
 
         val enteredString = readLine()!!.uppercase() //take the input from user
         Utils.validateEmptyInput(enteredString) { isEmpty ->
             if (isEmpty) {
+                println()
                 println("Inputan tidak boleh kosong!")
                 Utils.handleMessageAlert(dataDecisionArray)
                 showMessageVersusCpu()
