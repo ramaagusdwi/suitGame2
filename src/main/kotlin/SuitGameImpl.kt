@@ -105,8 +105,9 @@ class SuitGameImpl(private val titleGame: String) : Game(titleGame), SuitGame {
         }
 
         println()
-        println("Hasil: ")
-        print(result)
+        println()
+        print("Hasil: ")
+        println(result)
     }
 
     override fun setScore(saveScore: (suitGame: SuitGameImpl) -> Unit) {
