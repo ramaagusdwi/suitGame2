@@ -11,6 +11,7 @@ open class Game(val title: String) {
         )
 
     fun showWelcomeMessage() {
+        println()
         println("==========================")
         println(this.title)
         println("==========================")
